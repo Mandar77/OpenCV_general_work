@@ -12,4 +12,4 @@ The script includes the following functionalities:
 6. **Add Text (`t` or `T`)**: Overlays custom text (your name) on the video.
 7. **Thresholding (`g` or `G`)**: Converts the video to grayscale and applies binary thresholding.
 8. **Custom Function (`n` or `N`)**: Applies an additional custom effect, such as inverting colors.
-9. **Quit ('q' or Q')**: Quits the webcam.
+9. **Quit (`q` or `Q`)**: Quits the webcam.
