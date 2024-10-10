@@ -37,7 +37,6 @@ plt.plot(hist_gray)
 plt.xlim([0, 256])
 plt.savefig("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/grayhist.jpg")
 
-
 ## Color Histogram
 
 # Split the image into its color channels
@@ -75,6 +74,56 @@ plt.colorbar()
 
 plt.savefig('CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/output.png')
 
+# Smoothing and Blurring
+# Apply averaging (box filter)
+blurred_avg = cv2.blur(img, (5, 5))
+cv2.imwrite("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/blurred_avg.jpg", blurred_avg)
+
+# Apply Gaussian blur
+blurred_gauss = cv2.GaussianBlur(img, (5, 5), 0)
+cv2.imwrite("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/blurred_gauss.jpg", blurred_gauss)
+
+# Apply median blur
+blurred_median = cv2.medianBlur(img, 5)
+cv2.imwrite("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/blurred_median.jpg", blurred_median)
+
+# Apply bilateral filter
+blurred_bilateral = cv2.bilateralFilter(img, 9, 75, 75)
+cv2.imwrite("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/blurred_bilateral.jpg", blurred_bilateral)
+
+# Feature Detection and Matching
+# Create SIFT object
+sift = cv2.SIFT_create()
+
+# Detect keypoints and compute descriptors
+keypoints, descriptors = sift.detectAndCompute(gray_img, None)
+
+# Draw keypoints
+img_keypoints = cv2.drawKeypoints(img, keypoints, None)
+cv2.imwrite("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/sift_keypoints.jpg", img_keypoints)
+
+# Feature Matching with FLANN
+# Assuming we have another image to match against
+img2 = cv2.imread("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/another_image.jpg", 0)
+keypoints2, descriptors2 = sift.detectAndCompute(img2, None)
+
+# FLANN parameters
+FLANN_INDEX_KDTREE = 1
+index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
+search_params = dict(checks=50)
+
+flann = cv2.FlannBasedMatcher(index_params,search_params)
+matches = flann.knnMatch(descriptors,descriptors2,k=2)
+
+# Apply ratio test
+good_matches = []
+for m,n in matches:
+    if m.distance < 0.7*n.distance:
+        good_matches.append(m)
+
+# Draw matches
+img_matches = cv2.drawMatches(img, keypoints, img2, keypoints2, good_matches, None, flags=2)
+cv2.imwrite("CS5330_F24_Mandar_Ambulkar/OpenCv-Workshop/flann_matches.jpg", img_matches)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
