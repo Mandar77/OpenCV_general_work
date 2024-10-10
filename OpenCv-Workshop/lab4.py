@@ -13,6 +13,7 @@ harris_corners = cv2.dilate(harris_corners, kernel=None)
 img[harris_corners > 0.01 * harris_corners.max()] = [0, 0, 225]
 cv2.imshow("Harris corners", img)
 
+gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # SIFT
 sift = cv2.SIFT_create()
 keypoints, descriptors = sift.detectAndCompute(gray_img, None)
