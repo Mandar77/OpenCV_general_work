@@ -34,3 +34,7 @@ This repository contains a series of OpenCV workshops covering fundamental image
 - Applying Gaussian blurring
 - Applying median blurring
 - Applying bilateral filtering
+
+### Lab 8: Edge Detection
+- Soble Edge Detection
+- Canny Edge Detection
