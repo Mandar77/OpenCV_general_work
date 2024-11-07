@@ -38,3 +38,8 @@ This repository contains a series of OpenCV workshops covering fundamental image
 ### Lab 8: Edge Detection
 - Soble Edge Detection
 - Canny Edge Detection
+
+### Lab 9: Contour
+- Contours
+- Retrieval Modes (RETR_TREE)
+- Approximation Modes (CHAIN_APPROX_NONE)
