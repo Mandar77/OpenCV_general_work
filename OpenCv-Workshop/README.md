@@ -43,3 +43,13 @@ This repository contains a series of OpenCV workshops covering fundamental image
 - Contours
 - Retrieval Modes (RETR_TREE)
 - Approximation Modes (CHAIN_APPROX_NONE)
+
+### Lab 10: 
+- Shi-Tomasi Corner detection
+- Lucas Kanade Optical Flow
+
+### Lab 11:
+- Adversarial Images
+- Generator Models
+- Discriminator Models
+- Noise Addition and Denoising
